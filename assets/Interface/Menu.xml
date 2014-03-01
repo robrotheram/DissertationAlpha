@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nifty xmlns="http://nifty-gui.sourceforge.net/nifty-1.3.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://nifty-gui.sourceforge.net/nifty-1.3.xsd http://nifty-gui.sourceforge.net/nifty-1.3.xsd">
+    <!-- +++++++++++++++++++++++++++++++++++++++ -->
+    <!-- start screen -->
+    <!-- +++++++++++++++++++++++++++++++++++++++ -->
+    <screen id="start" controller="mygame.Main">
+      <layer id="layer" backgroundColor="#0000" childLayout="center">
+      <panel id="panel" height="50%" width="65%" align="center" valign="center" backgroundColor="#f60f" childLayout="center" visibleToMouse="true">
+      
+          <control id="listBoxStatic" name="listBox" horizontal="false" width="*" height="100%" childLayout="vertical" visibleToMouse="true">
+<panel id="listBoxStaticData" width="100%" childLayout="vertical" visibleToMouse="true">
+<label text="Static Item I" style="my-listbox-item-style" />
+<label text="Fo Shizzle" style="my-listbox-item-style" />
+<label text="Static Item III" style="my-listbox-item-style" />
+<label text="Static Items ftw" style="my-listbox-item-style" />
+</panel>
+</control>
+          
+          
+      
+      </panel>
+    </layer>
+    </screen>
+</nifty>

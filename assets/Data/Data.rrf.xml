@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <place>
+        <placeName>Libuary</placeName>
+        <placeDesc>Place to do research</placeDesc>
+        <xcordinate>-19</xcordinate>
+        <ycordinate>1</ycordinate>
+        <zcordinate>-4</zcordinate>
+    </place>
+    <place>
+        <placeName>Faraday</placeName>
+        <placeDesc>Home to Engineering, Computer Science</placeDesc>
+        <xcordinate>4</xcordinate>
+        <ycordinate>1</ycordinate>
+        <zcordinate>-3</zcordinate>
+    </place>
+    <place>
+        <placeName>Fulton</placeName>
+        <placeDesc>Centre of Food Drink and Students Union</placeDesc>
+        <xcordinate>23</xcordinate>
+        <ycordinate>1</ycordinate>
+        <zcordinate>3</zcordinate>
+    </place>
+    <place>
+        <placeName>Technium</placeName>
+        <placeDesc>I have not a clue</placeDesc>
+        <xcordinate>8</xcordinate>
+        <ycordinate>1</ycordinate>
+        <zcordinate>0</zcordinate>
+    </place>
+</root>

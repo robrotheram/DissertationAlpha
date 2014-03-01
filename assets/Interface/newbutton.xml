@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nifty xmlns="http://nifty-gui.sourceforge.net/nifty-1.3.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://nifty-gui.sourceforge.net/nifty-1.3.xsd http://nifty-gui.sourceforge.net/nifty-1.3.xsd">
+    <useStyles filename="nifty-default-styles.xml" />
+    <useControls filename="nifty-default-controls.xml" />
+
+    <screen id="start"controller="mygame.UiController">
+        <layer childLayout="center">
+            <panel width="25%" height="25%" align="center" valign="center" childLayout="vertical" backgroundColor="#55a5" padding="10">
+                <panel height="*" childLayout="center" backgroundColor="#55aa" padding="10">
+                    <!-- add your content here -->
+                     <control id="myListBox" align="center" valign="center" name="listBox" vertical="optional" horizontal="optional" displayItems="4" selection="Multiple" />
+   
+                </panel>
+                <panel height="10px" />
+                <panel height="21px" childLayout="horizontal">
+                    <control id="buttonOk" name="button" label="OK">
+                        <interact onClick="select()"/>
+                    </control>
+                    <panel width="*" />
+                    <control id="buttonCancel" name="button" label="Cancel"> <interact onClick="doNothing()"/>
+                    </control>
+                </panel>
+            </panel>
+        </layer>
+    </screen>
+    <screen id="run"controller="mygame.UiController">
+        <layer id="layer"  childLayout="center">
+            <panel id="panel" height="15%" width="100%" align="center" valign="bottom" childLayout="center" visibleToMouse="true">
+                <image filename="Interface/footer.png" width="100%" height="100%"  x="0%" y="0%"/>
+                
+            </panel>
+        </layer>
+        <layer id="back"  childLayout="center">
+            <panel id="panel2" height="15%" width="100%"  valign="bottom" childLayout="absolute" visibleToMouse="true">
+                <text id="text" font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="50%" x="85%" text="Hello World!" valign="center" />
+            </panel>
+        </layer>
+    </screen>
+    
+    
+    
+     <screen id="begin"controller="mygame.UiController">
+        <layer childLayout="center">
+            <panel width="45%" height="25%" align="center" valign="center" childLayout="vertical" backgroundColor="#55a5" padding="10">
+                <panel height="*" childLayout="absolute" valign="center" backgroundColor="#55aa" padding="10">
+                    <text id="Welcome" font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="10%" x="0%" text="Hello Tam, Welcome to V.0.1 (alpha)" valign="center" />
+                    <text id="Welcome" font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="30%" x="0%" text="Controls" valign="center" />
+                    <text id="Welcome" font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="60%" x="0%" text="Press 'm' to bring up the list" valign="center" />
+                   </panel>
+                   
+            </panel>
+        </layer>
+    </screen>
+</nifty>
