@@ -3,29 +3,43 @@
     <place>
         <placeName>Libuary</placeName>
         <placeDesc>Place to do research</placeDesc>
-        <xcordinate>-19</xcordinate>
-        <ycordinate>1</ycordinate>
-        <zcordinate>-4</zcordinate>
+        <xcordinate>22</xcordinate>
+        <ycordinate>0</ycordinate>
+        <zcordinate>1</zcordinate>
     </place>
     <place>
         <placeName>Faraday</placeName>
         <placeDesc>Home to Engineering, Computer Science</placeDesc>
-        <xcordinate>4</xcordinate>
-        <ycordinate>1</ycordinate>
-        <zcordinate>-3</zcordinate>
+        <xcordinate>5</xcordinate>
+        <ycordinate>0</ycordinate>
+        <zcordinate>1.5</zcordinate>
     </place>
     <place>
         <placeName>Fulton</placeName>
         <placeDesc>Centre of Food Drink and Students Union</placeDesc>
-        <xcordinate>23</xcordinate>
-        <ycordinate>1</ycordinate>
-        <zcordinate>3</zcordinate>
+        <xcordinate>-20</xcordinate>
+        <ycordinate>0</ycordinate>
+        <zcordinate>-3.5</zcordinate>
     </place>
     <place>
         <placeName>Technium</placeName>
         <placeDesc>I have not a clue</placeDesc>
-        <xcordinate>8</xcordinate>
-        <ycordinate>1</ycordinate>
-        <zcordinate>0</zcordinate>
+        <xcordinate>-1.5</xcordinate>
+        <ycordinate>0</ycordinate>
+        <zcordinate>-3</zcordinate>
+    </place>
+    <place>
+        <placeName>Talesin</placeName>
+        <placeDesc>I have not a clue</placeDesc>
+        <xcordinate>12</xcordinate>
+        <ycordinate>0</ycordinate>
+        <zcordinate>-2</zcordinate>
+    </place>
+    <place>
+        <placeName>Kehir Hardy</placeName>
+        <placeDesc>I have not a clue</placeDesc>
+        <xcordinate>32</xcordinate>
+        <ycordinate>0</ycordinate>
+        <zcordinate>-3.5</zcordinate>
     </place>
 </root>

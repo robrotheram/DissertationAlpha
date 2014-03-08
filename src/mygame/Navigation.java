@@ -16,7 +16,6 @@ import com.jme3.scene.CameraNode;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.Node;
-import com.jme3.scene.Spatial;
 import com.jme3.scene.control.CameraControl;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,6 +35,7 @@ public class Navigation {
     private Render rndr;
     private ArrayList<PlaceData> placeData ;
     private HashMap<String, MotionPath> paths;
+    private MotionPath path;
 
     public Navigation(ArrayList<PlaceData> pd) {
         this.paths = new HashMap<String, MotionPath>();
@@ -47,9 +47,9 @@ public class Navigation {
     }
     public void SetUP(Render r){
          rndr = r;
-        Node submesh = (Node) rndr.getRootNode().getChild("Mesh-ogremesh");
-       // System.out.println(rndr.getRootNode().getChildren());
-        Geometry g = (Geometry) submesh.getChild("Material.002");
+        Node submesh = (Node) rndr.getRootNode().getChild("small-1-ogremesh");
+        System.out.println(rndr.getRootNode().getChildren());
+        Geometry g = (Geometry) submesh.getChild("_missing_material_");
         
         
         for(int i = 0; i<placeData.size(); i++){
@@ -58,7 +58,7 @@ public class Navigation {
               System.out.println("p"+i+"-"+j);
             }  
         }
-        setupCam("p0-1");
+     // setupCam("p0-1");
     }
     
     public ChaseCamera getChaser(){
@@ -90,12 +90,12 @@ public class Navigation {
         
     for (Path.Waypoint p : pathl.getWaypoints()) {
 
-        Vector3f vf = new Vector3f(p.getPosition().x,0.7f,p.getPosition().z);
+        Vector3f vf = new Vector3f(p.getPosition().x,1.2f,p.getPosition().z);
         path.addWayPoint(vf);
 
     // Now you need to create some code to solve this for you. Maybe remebering what was the last waypoint, so you can know which one is the next and how to proceed.
     }
-    
+    System.out.println("name:"+name+" path"+path.getLength());
     paths.put(name, path);
     
     }
@@ -104,8 +104,9 @@ public class Navigation {
     
     
     public void setupCam(String key){
-        final MotionPath path = paths.get(key);
-        
+         path = paths.get(key);
+         final Vector3f last = path.getWayPoint(path.getNbWayPoints()-1);
+         
         camNode = new CameraNode("Motion cam", rndr.getCamera());
         camNode.setControlDir(CameraControl.ControlDirection.SpatialToCamera);
         camNode.setEnabled(false);
@@ -121,37 +122,27 @@ public class Navigation {
         rndr.getRootNode().attachChild(camNode);
         
         path.addListener(new MotionPathListener() {
-
+            
             public void onWayPointReach(MotionEvent control, int wayPointIndex) {
+                Vector3f vl = last;
                 if (path.getNbWayPoints() == wayPointIndex + 1) {
-                    rndr.rechangeName(control.getSpatial().getName() + " Finish!!! ");
-                    
-                    chaser.setEnabled(false);
-                        camNode.setEnabled(true);
-                        cameraMotionControl.stop();
-                        rndr.getFlyByCamera().setEnabled(true);
+                         rndr.getRootNode().detachChild(camNode);
+                         cameraMotionControl.stop();
+                         rndr.getFlyByCamera().setDragToRotate(true);
+                       
                         
-                } else {
-                    rndr.rechangeName(control.getSpatial().getName() + " Reached way point " + wayPointIndex);
-                }
+                } else { }
             }
         });
 
-        rndr.getFlyByCamera().setEnabled(false);
+        //rndr.getFlyByCamera().setEnabled(false);
         chaser = new ChaseCamera(rndr.getCamera(), rndr.getScene());
         chaser.setLookAtOffset(Vector3f.UNIT_Y.add(0, 10, 0));
                 
         chaser.registerWithInput(rndr.getInputManager());
-        chaser.setSmoothMotion(false);
+        chaser.setSmoothMotion(true);
         chaser.setMaxDistance(50);
         chaser.setDefaultDistance(50);
-       
-
-    }
-
-    private static class assetManager {
-
-        public assetManager() {
-        }
+        chaser.setDragToRotate(true);
     }
 }

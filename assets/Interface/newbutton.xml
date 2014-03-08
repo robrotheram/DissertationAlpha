@@ -43,9 +43,9 @@
         <layer childLayout="center">
             <panel width="45%" height="25%" align="center" valign="center" childLayout="vertical" backgroundColor="#55a5" padding="10">
                 <panel height="*" childLayout="absolute" valign="center" backgroundColor="#55aa" padding="10">
-                    <text id="Welcome" font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="10%" x="0%" text="Hello Tam, Welcome to V.0.1 (alpha)" valign="center" />
-                    <text id="Welcome" font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="30%" x="0%" text="Controls" valign="center" />
-                    <text id="Welcome" font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="60%" x="0%" text="Press 'm' to bring up the list" valign="center" />
+                    <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="10%" x="0%" text="Hello Tam, Welcome to V.0.1 (alpha)" valign="center" />
+                    <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="30%" x="0%" text="Controls" valign="center" />
+                    <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="60%" x="0%" text="Press 'm' to bring up the list" valign="center" />
                    </panel>
                    
             </panel>

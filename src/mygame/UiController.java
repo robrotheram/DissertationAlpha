@@ -91,11 +91,13 @@ public class UiController implements ScreenController {
     public void onAction(String name, boolean keyPressed, float tpf) {
       if (name.equals("Pause") && !keyPressed) {
         nav.getChaser().setEnabled(false);
-        nav.getCamNode().setEnabled(true);
-        nav.getContol().play();  
+        nav.getCamNode().setEnabled(false);
+        rndr.getCamera().setLocation(new Vector3f(10,10,10)); 
+        rndr.getFlyByCamera().setDragToRotate(true);
+        rndr.getFlyByCamera().setEnabled(true);
+        
       }else if (name.equals("Map") && !keyPressed) {
           
-         
         //Element niftyElement = nifty.getCurrentScreen().findElementByName("text");
             // swap old with new text
            nifty.gotoScreen("start");
