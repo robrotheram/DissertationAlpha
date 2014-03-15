@@ -6,8 +6,12 @@
     <screen id="start"controller="mygame.UiController">
         <layer childLayout="center">
             <panel width="25%" height="25%" align="center" valign="center" childLayout="vertical" backgroundColor="#55a5" padding="10">
+                <panel height="41px"childLayout="center" backgroundColor="#55aa" padding="10">
+                    <control id="search" name="textfield" maxLength="20" />
+                </panel>
                 <panel height="*" childLayout="center" backgroundColor="#55aa" padding="10">
                     <!-- add your content here -->
+                     
                      <control id="myListBox" align="center" valign="center" name="listBox" vertical="optional" horizontal="optional" displayItems="4" selection="Multiple" />
    
                 </panel>
@@ -26,7 +30,7 @@
     <screen id="run"controller="mygame.UiController">
         <layer id="layer"  childLayout="center">
             <panel id="panel" height="15%" width="100%" align="center" valign="bottom" childLayout="center" visibleToMouse="true">
-                <image filename="Interface/footer.png" width="100%" height="100%"  x="0%" y="0%"/>
+                <image filename="Interface/pics/footer.png" width="100%" height="100%"  x="0%" y="0%"/>
                 
             </panel>
         </layer>
@@ -43,10 +47,23 @@
         <layer childLayout="center">
             <panel width="45%" height="25%" align="center" valign="center" childLayout="vertical" backgroundColor="#55a5" padding="10">
                 <panel height="*" childLayout="absolute" valign="center" backgroundColor="#55aa" padding="10">
-                    <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="10%" x="0%" text="Hello Tam, Welcome to V.0.1 (alpha)" valign="center" />
-                    <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="30%" x="0%" text="Controls" valign="center" />
-                    <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="60%" x="0%" text="Press 'm' to bring up the list" valign="center" />
+                    <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="10%" x="0%" text="Hello Tam, Welcome to V.0.3 (alpha)" valign="center" />
+                    <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="30%" x="0%"  text=" --------| Controls |-------" valign="center" />
+                    <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="60%" x="0%" text="Press 'p' to bring up the list" valign="center" />
+                    <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="90%" x="0%" text="Press 'm' to bring up the map" valign="center" />
                    </panel>
+                   
+            </panel>
+        </layer>
+    </screen>
+    
+    
+    
+    <screen id="test"controller="mygame.UiController">
+        <layer childLayout="center">
+            <panel width="90%" height="70%" align="center" valign="center"  childLayout="vertical" backgroundColor="#55a5" padding="10">
+               <image id="pin" filename="Interface/pics/map.png" width="100%" height="100%"  x="0%" y="0%"/>
+                
                    
             </panel>
         </layer>

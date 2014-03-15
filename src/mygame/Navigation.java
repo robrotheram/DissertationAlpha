@@ -76,8 +76,7 @@ public class Navigation {
         NavMesh navmesh = new NavMesh();
     navmesh.loadFromMesh(m);
 
-  // Vector3f init = new Vector3f(4,1,-3); // some initial point
-    //Vector3f end = new Vector3f(23,1,3);  //some destination/end point
+  
 
     Path pathl = new Path();
     boolean buildNavigationPath = navmesh.buildNavigationPath(pathl, navmesh.findClosestCell(init), init, navmesh.findClosestCell(end), end, 0.4f);

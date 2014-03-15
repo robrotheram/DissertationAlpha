@@ -1,6 +1,9 @@
 package mygame;
 
 import com.jme3.app.SimpleApplication;
+import com.jme3.bounding.BoundingBox;
+import com.jme3.bounding.BoundingSphere;
+import com.jme3.bounding.BoundingVolume;
 import com.jme3.font.BitmapText;
 import com.jme3.light.AmbientLight;
 import com.jme3.math.ColorRGBA;
@@ -26,6 +29,11 @@ public class Render extends SimpleApplication {
     private Navigation nav;
     private UiController ui;
     ArrayList<PlaceData> placeData;
+    
+    
+    
+    
+  
     public Render(){
         this.start();
         setDisplayFps(false);
@@ -50,7 +58,7 @@ public class Render extends SimpleApplication {
         Spatial sky = SkyFactory.createSky(assetManager, west, east, north, south, up, down, Vector3f.UNIT_XYZ);
         rootNode.attachChild(sky);
 
-        scene = assetManager.loadModel("Scenes/Scene4/small.j3o");
+        scene = assetManager.loadModel("Scenes/Scene5/small.blend.j3o");
         AmbientLight al = new AmbientLight();
         flyCam.setMoveSpeed(10);
 
@@ -58,6 +66,8 @@ public class Render extends SimpleApplication {
         rootNode.addLight(al);
         rootNode.attachChild(scene);
         
+
+
         guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
         wayPointsText = new BitmapText(guiFont, false);
         wayPointsText.setSize(guiFont.getCharSet().getRenderedSize());
@@ -71,7 +81,7 @@ public class Render extends SimpleApplication {
     @Override
     public void simpleUpdate(float tpf){
         Vector3f pos = cam.getLocation();
-       /* System.out.print("x:"+pos.x);
+        /*System.out.print("x:"+pos.x);
         System.out.print("y:"+pos.y);
         System.out.println("z:"+pos.z);*/
         for(int i = 0; i< nav.getPlaceData().size();i++){
