@@ -33,7 +33,7 @@ public class UiController implements ScreenController {
     private Nifty nifty;
     private int closeByPos;
     private int newLocationPos;
-    ArrayList<PlaceData> placeData;
+    private DataBase placeData;
     final int ox = -43;
     final int oz = -14;
     
@@ -143,6 +143,7 @@ public class UiController implements ScreenController {
         rndr.getGuiNode().detachChildNamed("pin");
         screen = nifty.getScreen("start");
         ListBox listBox = screen.findNiftyControl("myListBox", ListBox.class);
+        
         for(int i=0; i<placeData.size(); i++){
             listBox.addItem(placeData.get(i).getName());
 
@@ -163,16 +164,29 @@ public class UiController implements ScreenController {
     
     @NiftyEventSubscriber(id="search")
 
-        public void onTextChanged(final String id, final TextFieldChangedEvent event)
-        {
-        String password = event.getText();
-        System.out.println("text:"+password );
+    public void onTextChanged(final String id, final TextFieldChangedEvent event)
+    {
+        String searchText = event.getText();
+        System.out.println("text:"+searchText );
+        Screen screen = nifty.getScreen("start");
+        ListBox listBox = screen.findNiftyControl("myListBox", ListBox.class);
+        listBox.clear();
+        List<PlaceData> Searchlist = placeData.Search(searchText);
+        if(searchText.equals("")){
+            listBox.addAllItems(placeData.getList());
+        }else if(Searchlist.size()>0){
+            listBox.addAllItems(Searchlist);
         }
+        
+    }
     
   @NiftyEventSubscriber(id="myListBox")
   public void onMyListBoxSelectionChanged(final String id, final ListBoxSelectionChangedEvent<String> event) {
+     
     List<Integer> selection = event.getSelectionIndices();
-    newLocationPos = selection.get(0);
+    if(selection.size()>0){
+        newLocationPos = selection.get(0);
+    }
   }
   
 

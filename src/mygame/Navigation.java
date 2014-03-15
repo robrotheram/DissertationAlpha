@@ -33,16 +33,16 @@ public class Navigation {
     private ChaseCamera chaser;
     private CameraNode camNode;
     private Render rndr;
-    private ArrayList<PlaceData> placeData ;
+    private DataBase placeData ;
     private HashMap<String, MotionPath> paths;
     private MotionPath path;
 
-    public Navigation(ArrayList<PlaceData> pd) {
+    public Navigation(DataBase pd) {
         this.paths = new HashMap<String, MotionPath>();
         placeData = pd;
     }
   
-    public ArrayList<PlaceData> getPlaceData(){
+    public DataBase getPlaceData(){
         return placeData;
     }
     public void SetUP(Render r){
@@ -54,7 +54,7 @@ public class Navigation {
         
         for(int i = 0; i<placeData.size(); i++){
           for(int j = 0; j<placeData.size(); j++){
-              v2(g.getMesh(),placeData.get(i).getcoOrd(),placeData.get(j).getcoOrd(),"p"+i+"-"+j);
+              v2(g.getMesh(),placeData.get(i).getCo_ord(),placeData.get(j).getCo_ord(),"p"+i+"-"+j);
               System.out.println("p"+i+"-"+j);
             }  
         }

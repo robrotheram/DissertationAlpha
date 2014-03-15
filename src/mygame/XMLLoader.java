@@ -20,7 +20,7 @@ import org.w3c.dom.NodeList;
  * @author Robert
  */
 public class XMLLoader implements AssetLoader {
-    private ArrayList<PlaceData> placeData = new ArrayList<PlaceData>();
+    private DataBase placeData = new DataBase();
 
     public Object load(AssetInfo assetInfo) {
         Document doc = createDocFromStream(assetInfo.openStream());
@@ -30,14 +30,33 @@ public class XMLLoader implements AssetLoader {
             for(int s=0; s<listOfPersons.getLength() ; s++){
                 Node firstPersonNode = listOfPersons.item(s);
                 if(firstPersonNode.getNodeType() == Node.ELEMENT_NODE){
-                    placeData.add(new PlaceData(
-                               getXMLValue((Element)firstPersonNode,"placeName" ),
+                   
+                    NodeList optionList = ((Element)listOfPersons.item(s)).getElementsByTagName("department");
+                    ArrayList<String> dept = new ArrayList<String>();
+                    for (int j = 0; j < optionList.getLength(); ++j)
+                    {
+                       
+                        Element option = (Element) optionList.item(j);
+                        if(option != null){
+                            String optionText = option.getFirstChild().getNodeValue();
+                            dept.add(optionText);
+                            System.out.println(optionText);
+                        }
+                    }
+                    placeData.addData(new PlaceData(
+                                getXMLValue((Element)firstPersonNode,"placeName"),
                                 getXMLValue((Element)firstPersonNode,"placeDesc" ),
                                 getXMLValue((Element)firstPersonNode,"xcordinate" ),
                                 getXMLValue((Element)firstPersonNode,"ycordinate" ),
-                                getXMLValue((Element)firstPersonNode,"zcordinate" )));
+                                getXMLValue((Element)firstPersonNode,"zcordinate" ),
+                                dept));
+               
                     
-                }//end of if clause
+                    
+                               
+                }else{
+                System.out.println("error");}
+                //end of if clause
             }//end of for loop with s var
 
         }
@@ -64,5 +83,6 @@ public class XMLLoader implements AssetLoader {
         NodeList textFNList = firstNameElement.getChildNodes();
         return ((Node)textFNList.item(0)).getNodeValue().trim();
     }
+    
 }
 

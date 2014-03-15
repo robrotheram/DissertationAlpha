@@ -28,7 +28,7 @@ public class Render extends SimpleApplication {
     private BitmapText wayPointsText;
     private Navigation nav;
     private UiController ui;
-    ArrayList<PlaceData> placeData;
+    private DataBase placeData;
     
     
     
@@ -44,7 +44,7 @@ public class Render extends SimpleApplication {
     public void simpleInitApp() {
         assetManager.registerLoader(XMLLoader.class, "rrf.xml");
         // Type cast to your result class X here
-        placeData = (ArrayList<PlaceData>) assetManager.loadAsset("Data/Data.rrf.xml");
+        placeData = (DataBase) assetManager.loadAsset("Data/Data.rrf.xml");
         nav = new Navigation(placeData);
         ui = new UiController();
         
@@ -85,7 +85,7 @@ public class Render extends SimpleApplication {
         System.out.print("y:"+pos.y);
         System.out.println("z:"+pos.z);*/
         for(int i = 0; i< nav.getPlaceData().size();i++){
-            if(pos.distance(nav.getPlaceData().get(i).getcoOrd())<=2){
+            if(pos.distance(nav.getPlaceData().get(i).getCo_ord())<=2){
                 ui.setLabelText(nav.getPlaceData().get(i).getName());
                 ui.setClosebyPos(i);
             } else{
