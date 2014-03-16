@@ -9,6 +9,7 @@ import com.jme3.light.AmbientLight;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Spatial;
+import com.jme3.system.AppSettings;
 import com.jme3.texture.Texture;
 import com.jme3.util.SkyFactory;
 import java.io.File;
@@ -35,6 +36,11 @@ public class Render extends SimpleApplication {
     
   
     public Render(){
+        
+        AppSettings settings = new AppSettings(true);
+        settings.setResolution(1024,680);
+        this.setShowSettings(false);
+        this.setSettings(settings);
         this.start();
         setDisplayFps(false);
         setDisplayStatView(false);
