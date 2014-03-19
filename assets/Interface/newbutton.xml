@@ -36,7 +36,7 @@
         </layer>
         <layer id="back"  childLayout="center">
             <panel id="panel2" height="15%" width="100%"  valign="bottom" childLayout="absolute" visibleToMouse="true">
-                <text id="text" font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="50%" x="85%" text="Hello World!" valign="center" />
+                <text id="text" font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="50%" x="85%" text="Swansea Univeristy" valign="center" />
             </panel>
         </layer>
     </screen>
@@ -47,7 +47,7 @@
         <layer childLayout="center">
             <panel width="45%" height="25%" align="center" valign="center" childLayout="vertical" backgroundColor="#55a5" padding="10">
                 <panel height="*" childLayout="absolute" valign="center" backgroundColor="#55aa" padding="10">
-                    <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="10%" x="0%" text="Hello Tam, Welcome to V.0.3 (alpha)" valign="center" />
+                    <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="10%" x="0%" text="Hello Tam, Welcome to V.0.5.5 (alpha)" valign="center" />
                     <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="30%" x="0%"  text=" --------| Controls |-------" valign="center" />
                     <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="60%" x="0%" text="Press 'p' to bring up the list" valign="center" />
                     <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="90%" x="0%" text="Press 'm' to bring up the map" valign="center" />

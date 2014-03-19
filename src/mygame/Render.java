@@ -94,7 +94,12 @@ public class Render extends SimpleApplication {
         cam.update();
         System.out.println("12345678");
     }
-    
+    public Navigation getNav(){
+        return nav;
+    }
+     public Models getModels(){
+        return model;
+    }
     
     
 }

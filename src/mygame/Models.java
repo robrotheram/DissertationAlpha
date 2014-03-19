@@ -18,6 +18,7 @@ import java.util.Map;
 public class Models {
     HashMap<String, Spatial> data;
     Render root; 
+    private Navigation nav;
     public Models(Render n) {
         this.data = new HashMap<String, Spatial>();
         this.root = n;
@@ -55,7 +56,7 @@ public class Models {
                             true
                             );
         addSpatial(
-                          "liblib", 
+                          "liblaw", 
                           n.getAssetManager().loadModel("Scenes/Scene6/lib2mesh-edit.mesh.j3o"),
                           new Quaternion(0,-1,0,0.08f),
                           new Vector3f(41.4f,0.9f,-0.7f),//translate
@@ -115,25 +116,88 @@ public class Models {
         }
     }
     
-    public void setLOD(Vector3f v){
-        for (Map.Entry<String, Spatial> entry : data.entrySet()) {
-            ;
-            //System.out.println("Cam = "+v+"| Model "+entry.getKey()+" | Pos = "+entry.getValue().getLocalTranslation());
-          if((v.distance(entry.getValue().getLocalTranslation())>30)){
-                if((!(entry.getKey().equals("ROAD")))||(!(entry.getKey().equals("GRASS")))){
-                    System.out.println(entry.getKey());
-                    Spatial s = entry.getValue();
-                    s.setLodLevel(2);
-                    this.data.put(entry.getKey(), s);
-                }
-                
-                
-            }else{
-                Spatial s = entry.getValue();
-                s.setLodLevel(0);
-                this.data.put(entry.getKey(), s);
-                System.out.println("near");
+    
+    
+   public void updatelod(){
+       nav = root.getNav();
+       Vector3f pos = root.getCamera().getLocation();
+       String build = "";
+        for(int i = 0; i< nav.getPlaceData().size();i++){
+            if(pos.distance(nav.getPlaceData().get(i).getCo_ord())<=2){
+                build = nav.getPlaceData().get(i).getName();
+            } else{
             }
         }
-    }
+       if(build.equals("Libuary")){
+           setLOD("technium",0);
+           setLOD("faraday",3);
+           setLOD("liblaw",0);
+           setLOD("lib",0);
+           setLOD("kehir",0);
+           setLOD("tal",0);
+           setLOD("fulton",3);
+           
+       }else if(build.equals("Faraday")){
+           setLOD("technium",0);
+           setLOD("faraday",0);
+           setLOD("liblaw",3);
+           setLOD("lib",3);
+           setLOD("kehir",3);
+           setLOD("tal",0);
+           setLOD("fulton",0);
+           
+       }else if(build.equals("Fulton")){
+            setLOD("technium",0);
+           setLOD("faraday",0);
+           setLOD("liblaw",3);
+           setLOD("lib",3);
+           setLOD("kehir",3);
+           setLOD("tal",3);
+           setLOD("fulton",0);
+           
+       }else if(build.equals("Technium")){
+            setLOD("technium",0);
+           setLOD("faraday",0);
+           setLOD("liblaw",3);
+           setLOD("lib",0);
+           setLOD("kehir",3);
+           setLOD("tal",0);
+           setLOD("fulton",0);
+           
+       }else if(build.equals("Talesin")){
+            setLOD("technium",0);
+           setLOD("faraday",0);
+           setLOD("liblaw",0);
+           setLOD("lib",0);
+           setLOD("kehir",3);
+           setLOD("tal",0);
+           setLOD("fulton",3);
+           
+       }else if(build.equals("Kehir Hardy")){
+            setLOD("technium",3);
+           setLOD("faraday",0);
+           setLOD("liblaw",0);
+           setLOD("lib",0);
+           setLOD("kehir",0);
+           setLOD("tal",3);
+           setLOD("fulton",3);
+           
+       }
+        
+   }
+   public void resetLOD(){
+        setLOD("technium",0);
+        setLOD("faraday",0);
+        setLOD("liblaw",0);
+        setLOD("lib",0);
+        setLOD("kehir",0);
+        setLOD("tal",0);
+        setLOD("fulton",0);
+   }
+    
+   public void setLOD(String key, int LOD){
+      Spatial obj = data.get(key);
+      obj.setLodLevel(LOD);
+      data.put(key, obj);
+   }
 }

@@ -128,7 +128,7 @@ public class Navigation {
                          rndr.getRootNode().detachChild(camNode);
                          cameraMotionControl.stop();
                          rndr.getFlyByCamera().setDragToRotate(true);
-                       
+                         rndr.getModels().updatelod();
                         
                 } else { }
             }
@@ -143,5 +143,6 @@ public class Navigation {
         chaser.setMaxDistance(50);
         chaser.setDefaultDistance(50);
         chaser.setDragToRotate(true);
+        
     }
 }

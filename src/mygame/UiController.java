@@ -83,6 +83,7 @@ public class UiController implements ScreenController {
  
  
  public void select(){
+     rndr.getModels().resetLOD();
      Vector3f pos = rndr.getCamera().getLocation();
       for(int i = 0; i< nav.getPlaceData().size();i++){
             if(pos.distance(nav.getPlaceData().get(i).getCo_ord())<=2){
