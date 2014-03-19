@@ -30,6 +30,7 @@ public class Render extends SimpleApplication {
     private Navigation nav;
     private UiController ui;
     private DataBase placeData;
+    private Models model;
     
     
     
@@ -38,7 +39,7 @@ public class Render extends SimpleApplication {
     public Render(){
         
         AppSettings settings = new AppSettings(true);
-        settings.setResolution(1024,680);
+        settings.setResolution(1920,1080);
         this.setShowSettings(false);
         this.setSettings(settings);
         this.start();
@@ -53,25 +54,17 @@ public class Render extends SimpleApplication {
         placeData = (DataBase) assetManager.loadAsset("Data/Data.rrf.xml");
         nav = new Navigation(placeData);
         ui = new UiController();
-        
-        Texture west = assetManager.loadTexture("Textures/CloudyLightRays/CloudyLightRaysRight2048.png");
-        Texture east = assetManager.loadTexture("Textures/CloudyLightRays/CloudyLightRaysLeft2048.png");
-        Texture north = assetManager.loadTexture("Textures/CloudyLightRays/CloudyLightRaysFront2048.png");
-        Texture south = assetManager.loadTexture("Textures/CloudyLightRays/CloudyLightRaysBack2048.png");
-        Texture up = assetManager.loadTexture("Textures/CloudyLightRays/CloudyLightRaysUp2048.png");
-        Texture down = assetManager.loadTexture("Textures/CloudyLightRays/CloudyLightRaysDown2048.png");
-
-        Spatial sky = SkyFactory.createSky(assetManager, west, east, north, south, up, down, Vector3f.UNIT_XYZ);
-        rootNode.attachChild(sky);
-
-        scene = assetManager.loadModel("Scenes/Scene5/small.blend.j3o");
+        rootNode.attachChild(SkyFactory.createSky(assetManager, "Textures/Skysphere.jpg", true));
+        scene = assetManager.loadModel("Scenes/Scene6/small.j3o");
         AmbientLight al = new AmbientLight();
         flyCam.setMoveSpeed(10);
-
+        model = new Models(this);  
+        model.load();
         al.setColor(ColorRGBA.White.mult(1.3f));
         rootNode.addLight(al);
         rootNode.attachChild(scene);
-        
+        cam.setLocation(new Vector3f(2,50,2));
+        cam.lookAt(new Vector3f(2.8528273f,-0.9993293f,0.036614537f), Vector3f.UNIT_Y);
 
 
         guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
@@ -86,17 +79,7 @@ public class Render extends SimpleApplication {
     
     @Override
     public void simpleUpdate(float tpf){
-        Vector3f pos = cam.getLocation();
-        /*System.out.print("x:"+pos.x);
-        System.out.print("y:"+pos.y);
-        System.out.println("z:"+pos.z);*/
-        for(int i = 0; i< nav.getPlaceData().size();i++){
-            if(pos.distance(nav.getPlaceData().get(i).getCo_ord())<=2){
-                ui.setLabelText(nav.getPlaceData().get(i).getName());
-                ui.setClosebyPos(i);
-            } else{
-            }
-        }
+      
     }
     public Spatial getScene(){
         return scene;
