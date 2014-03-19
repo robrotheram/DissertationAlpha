@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <place>
+        <placeName>Libuary</placeName>
+        <placeDesc>Place to do research</placeDesc>
+        <xcordinate>22.5</xcordinate>
+        <ycordinate>0</ycordinate>
+        <zcordinate>0.7</zcordinate>
+    </place>
+    <place>
+        <placeName>Faraday</placeName>
+        <placeDesc>Home to Engineering, Computer Science</placeDesc>
+        <xcordinate>-2</xcordinate>
+        <ycordinate>0</ycordinate>
+        <zcordinate>2.5</zcordinate>
+        <departmentList>
+            <department>ComputerScience</department>
+            <department>Engineering</department>
+            <department>Mathematics</department>
+        </departmentList>
+    </place>
+    <place>
+        <placeName>Fulton</placeName>
+        <placeDesc>Centre of Food Drink and Students Union</placeDesc>
+        <xcordinate>-21</xcordinate>
+        <ycordinate>0</ycordinate>
+        <zcordinate>-1.4</zcordinate>
+    </place>
+    <place>
+        <placeName>Technium</placeName>
+        <placeDesc>I have not a clue</placeDesc>
+        <xcordinate>-1.8</xcordinate>
+        <ycordinate>0</ycordinate>
+        <zcordinate>-4</zcordinate>
+    </place>
+    <place>
+        <placeName>Talesin</placeName>
+        <placeDesc>I have not a clue</placeDesc>
+        <xcordinate>11.6</xcordinate>
+        <ycordinate>0</ycordinate>
+        <zcordinate>-1.8</zcordinate>
+    </place>
+    <place>
+        <placeName>Kehir Hardy</placeName>
+        <placeDesc>I have not a clue</placeDesc>
+        <xcordinate>31</xcordinate>
+        <ycordinate>0</ycordinate>
+        <zcordinate>-2.8</zcordinate>
+        <departmentList>
+            <department>English</department>
+            <department>French</department>
+            <department>German</department>
+            <department>Italian</department>
+            <department>Germany</department>
+            <department>Media</department>
+            <department>Communication Studies</department>
+            <department>Politics</department>
+            <department>International Relations</department>
+            <department>AmericanStudies</department>
+            <department>Classics</department>
+            <department>AncientHistory</department>
+            <department>Egyptology</department>
+            <department>War and Society</department>
+            
+        </departmentList>
+    </place>
+</root>

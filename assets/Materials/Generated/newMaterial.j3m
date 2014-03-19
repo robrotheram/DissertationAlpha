@@ -1,0 +1,24 @@
+Material My Material : Common/MatDefs/Light/Lighting.j3md {
+     MaterialParameters {
+        DiffuseMap : Flip Repeat Scenes/hope/TileableGrassLarge.jpg
+        UseMaterialColors : false
+        UseVertexColor : false
+        Minnaert : false
+        VertexLighting : false
+        UseAlpha : false
+        LATC : false
+        HighQuality : false
+        VTangent : false
+        SteepParallax : false
+        PackedNormalParallax : false
+        EnvMapAsSphereMap : false
+        ShadowIntensity : 0.0
+        ShadowMapSize : 0.0
+        HardwareShadows : false
+     }
+    AdditionalRenderState {
+      Wireframe Off
+      DepthWrite On
+      FaceCull Off
+    }
+}
