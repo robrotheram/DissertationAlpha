@@ -157,9 +157,9 @@ public class Models {
             setLOD("technium",false);
            setLOD("faraday",false);
            setLOD("liblaw",true);
-           setLOD("lib",true);
+           setLOD("lib",false);
            setLOD("kehir",true);
-           setLOD("tal",true);
+           setLOD("tal",false);
            setLOD("fulton",false);
            
        }else if(build.equals("Technium")){
