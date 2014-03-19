@@ -8,6 +8,8 @@ import com.jme3.font.BitmapText;
 import com.jme3.light.AmbientLight;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
+import com.jme3.post.FilterPostProcessor;
+import com.jme3.post.filters.FogFilter;
 import com.jme3.scene.Spatial;
 import com.jme3.system.AppSettings;
 import com.jme3.texture.Texture;
@@ -31,8 +33,8 @@ public class Render extends SimpleApplication {
     private UiController ui;
     private DataBase placeData;
     private Models model;
-    
-    
+    private FilterPostProcessor fpp;
+    private FogFilter fog;
     
     
   
@@ -49,6 +51,7 @@ public class Render extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
+        
         assetManager.registerLoader(XMLLoader.class, "rrf.xml");
         // Type cast to your result class X here
         placeData = (DataBase) assetManager.loadAsset("Data/Data.rrf.xml");
@@ -66,7 +69,13 @@ public class Render extends SimpleApplication {
         rootNode.attachChild(scene);
         cam.setLocation(new Vector3f(2,50,2));
         cam.lookAt(new Vector3f(2.8528273f,-0.9993293f,0.036614537f), Vector3f.UNIT_Y);
-
+        FilterPostProcessor fpp=new FilterPostProcessor(assetManager);
+        fog=new FogFilter();
+        fog.setFogColor(new ColorRGBA(0.9f, 0.9f, 0.9f, 1.0f));
+        fog.setFogDistance(35);
+        fog.setFogDensity(1.4f);
+        fpp.addFilter(fog);
+        viewPort.addProcessor(fpp);
 
         guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
         wayPointsText = new BitmapText(guiFont, false);
