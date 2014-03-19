@@ -60,6 +60,7 @@ public class Render extends SimpleApplication {
         flyCam.setMoveSpeed(10);
         model = new Models(this);  
         model.load();
+        model.addCulling();
         al.setColor(ColorRGBA.White.mult(1.3f));
         rootNode.addLight(al);
         rootNode.attachChild(scene);
@@ -79,7 +80,7 @@ public class Render extends SimpleApplication {
     
     @Override
     public void simpleUpdate(float tpf){
-      
+      model.updatelod();
     }
     public Spatial getScene(){
         return scene;

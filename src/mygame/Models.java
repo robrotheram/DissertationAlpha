@@ -115,7 +115,14 @@ public class Models {
             System.err.print(entry.getKey());
         }
     }
-    
+    public void addCulling(){
+        for (Map.Entry<String, Spatial> entry : data.entrySet()) {
+            Spatial obj = entry.getValue();
+            obj.setCullHint(Spatial.CullHint.Dynamic);
+            data.put(entry.getKey(), obj);
+        }
+    }
+  
     
     
    public void updatelod(){
@@ -123,81 +130,85 @@ public class Models {
        Vector3f pos = root.getCamera().getLocation();
        String build = "";
         for(int i = 0; i< nav.getPlaceData().size();i++){
-            if(pos.distance(nav.getPlaceData().get(i).getCo_ord())<=2){
+            if(pos.distance(nav.getPlaceData().get(i).getCo_ord())<=6){
                 build = nav.getPlaceData().get(i).getName();
             } else{
             }
         }
        if(build.equals("Libuary")){
-           setLOD("technium",0);
-           setLOD("faraday",3);
-           setLOD("liblaw",0);
-           setLOD("lib",0);
-           setLOD("kehir",0);
-           setLOD("tal",0);
-           setLOD("fulton",3);
+           setLOD("technium",false);
+           setLOD("faraday",false);
+           setLOD("liblaw",false);
+           setLOD("lib",false);
+           setLOD("kehir",false);
+           setLOD("tal",false);
+           setLOD("fulton",true);
            
        }else if(build.equals("Faraday")){
-           setLOD("technium",0);
-           setLOD("faraday",0);
-           setLOD("liblaw",3);
-           setLOD("lib",3);
-           setLOD("kehir",3);
-           setLOD("tal",0);
-           setLOD("fulton",0);
+           setLOD("technium",false);
+           setLOD("faraday",false);
+           setLOD("liblaw",true);
+           setLOD("lib",true);
+           setLOD("kehir",true);
+           setLOD("tal",false);
+           setLOD("fulton",false);
            
        }else if(build.equals("Fulton")){
-            setLOD("technium",0);
-           setLOD("faraday",0);
-           setLOD("liblaw",3);
-           setLOD("lib",3);
-           setLOD("kehir",3);
-           setLOD("tal",3);
-           setLOD("fulton",0);
+            setLOD("technium",false);
+           setLOD("faraday",false);
+           setLOD("liblaw",true);
+           setLOD("lib",true);
+           setLOD("kehir",true);
+           setLOD("tal",true);
+           setLOD("fulton",false);
            
        }else if(build.equals("Technium")){
-            setLOD("technium",0);
-           setLOD("faraday",0);
-           setLOD("liblaw",3);
-           setLOD("lib",0);
-           setLOD("kehir",3);
-           setLOD("tal",0);
-           setLOD("fulton",0);
+            setLOD("technium",false);
+           setLOD("faraday",false);
+           setLOD("liblaw",true);
+           setLOD("lib",false);
+           setLOD("kehir",true);
+           setLOD("tal",false);
+           setLOD("fulton",false);
            
        }else if(build.equals("Talesin")){
-            setLOD("technium",0);
-           setLOD("faraday",0);
-           setLOD("liblaw",0);
-           setLOD("lib",0);
-           setLOD("kehir",3);
-           setLOD("tal",0);
-           setLOD("fulton",3);
+            setLOD("technium",false);
+           setLOD("faraday",false);
+           setLOD("liblaw",false);
+           setLOD("lib",false);
+           setLOD("kehir",false);
+           setLOD("tal",false);
+           setLOD("fulton",false);
            
        }else if(build.equals("Kehir Hardy")){
-            setLOD("technium",3);
-           setLOD("faraday",0);
-           setLOD("liblaw",0);
-           setLOD("lib",0);
-           setLOD("kehir",0);
-           setLOD("tal",3);
-           setLOD("fulton",3);
+            setLOD("technium",true);
+           setLOD("faraday",false);
+           setLOD("liblaw",false);
+           setLOD("lib",false);
+           setLOD("kehir",false);
+           setLOD("tal",true);
+           setLOD("fulton",true);
            
        }
         
    }
    public void resetLOD(){
-        setLOD("technium",0);
-        setLOD("faraday",0);
-        setLOD("liblaw",0);
-        setLOD("lib",0);
-        setLOD("kehir",0);
-        setLOD("tal",0);
-        setLOD("fulton",0);
+        setLOD("technium",false);
+        setLOD("faraday",false);
+        setLOD("liblaw",false);
+        setLOD("lib",false);
+        setLOD("kehir",false);
+        setLOD("tal",false);
+        setLOD("fulton",false);
    }
     
-   public void setLOD(String key, int LOD){
+   public void setLOD(String key, boolean cull){
       Spatial obj = data.get(key);
-      obj.setLodLevel(LOD);
+      if(cull){
+          obj.setCullHint(Spatial.CullHint.Always);
+      }else{
+          obj.setCullHint(Spatial.CullHint.Dynamic);
+      }
       data.put(key, obj);
    }
 }
