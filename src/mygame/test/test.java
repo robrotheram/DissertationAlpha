@@ -10,10 +10,8 @@ import mygame.Render;
 
 public class test {
     public static void main(String[] args){
-        Render r = new Render();
-        r.getAssetManager().registerLoader(mygame.XMLLoader.class, "rrf.xml");
-        // Type cast to your result class X here
-        r.getAssetManager().loadAsset("Data/Data.rrf.xml");
+       String desktopPath = System.getProperty("user.home") + "/Desktop";
+System.out.print(desktopPath.replace("\\", "/"));
 
     }
 }   

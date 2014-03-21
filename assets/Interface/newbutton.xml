@@ -36,7 +36,16 @@
         </layer>
         <layer id="back"  childLayout="center">
             <panel id="panel2" height="15%" width="100%"  valign="bottom" childLayout="absolute" visibleToMouse="true">
-                <text id="text" font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="50%" x="85%" text="Swansea Univeristy" valign="center" />
+                <control id="Map" name="button" y="75%" x="10%" label="Show Map">
+                        <interact onClick="showMap()"/>
+                </control>
+                <control id="List" name="button" y="75%" x="20%" label="Show Places">
+                    <interact onClick="showList()"/>
+                </control>
+                <control id="Adminbtn" name="button" y="75%" x="30%" label="Add Place">
+                    <interact onClick="admin()"/>
+                </control>
+                <text id="text" font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="50%" x="75%" text="Swansea University" valign="center" />
             </panel>
         </layer>
     </screen>
@@ -55,6 +64,26 @@
                    
             </panel>
         </layer>
+        <layer id="layer"  childLayout="center">
+            <panel id="panel" height="15%" width="100%" align="center" valign="bottom" childLayout="center" visibleToMouse="true">
+                <image filename="Interface/pics/footer.png" width="100%" height="100%"  x="0%" y="0%"/>
+                
+            </panel>
+        </layer>
+        <layer id="back"  childLayout="center">
+            <panel id="panel2" height="15%" width="100%"  valign="bottom" childLayout="absolute" visibleToMouse="true">
+                <control id="Map" name="button" y="75%" x="10%" label="Show Map">
+                        <interact onClick="showMap()"/>
+                </control>
+                <control id="List" name="button" y="75%" x="20%" label="Show Places">
+                    <interact onClick="showList()"/>
+                </control>
+                <control id="Adminbtn" name="button" y="75%" x="30%" label="Add Place">
+                    <interact onClick="admin()"/>
+                </control>
+                <text id="text" font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="50%" x="75%" text="Swansea University" valign="center" />
+            </panel>
+        </layer>
     </screen>
     
     
@@ -67,5 +96,84 @@
                    
             </panel>
         </layer>
+        <layer id="layer"  childLayout="center">
+            <panel id="panel" height="15%" width="100%" align="center" valign="bottom" childLayout="center" visibleToMouse="true">
+                <image filename="Interface/pics/footer.png" width="100%" height="100%"  x="0%" y="0%"/>
+                
+            </panel>
+        </layer>
+        <layer id="back"  childLayout="center">
+            <panel id="panel2" height="15%" width="100%"  valign="bottom" childLayout="absolute" visibleToMouse="true">
+                <control id="Map" name="button" y="75%" x="10%" label="Show Map">
+                        <interact onClick="showMap()"/>
+                </control>
+                <control id="List" name="button" y="75%" x="20%" label="Show Places">
+                    <interact onClick="showList()"/>
+                </control>
+                <control id="Adminbtn" name="button" y="75%" x="30%" label="Add Place">
+                    <interact onClick="admin()"/>
+                </control>
+                
+                <text id="text" font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="50%" x="75%" text="Swansea University" valign="center" />
+            </panel>
+        </layer>
     </screen>
+   
+    <screen id="admin"controller="mygame.UiController">
+        <layer childLayout="center">
+            <panel width="45%" height="30%" align="center" valign="center" childLayout="vertical" backgroundColor="#55a5" padding="10">
+                <panel height="*" childLayout="absolute" valign="center" backgroundColor="#55aa" padding="10">
+                    <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="10%" x="0%" text="Place Name" valign="center" />
+                    <control id="PlaceTitle" y="10%" x="50%" name="textfield" width="50%" maxLength="200" />
+                 </panel>
+                 <panel height="*" childLayout="absolute" valign="center" backgroundColor="#55aa" padding="10">
+                    <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="10%" x="0%" text="Place Description" valign="center" />
+                    <control id="PlaceDesc" y="10%" x="50%" name="textfield" width="50%" maxLength="200" />
+                 </panel>
+                 <panel height="*" childLayout="absolute" valign="center" backgroundColor="#55aa" padding="10">
+                    <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="10%" x="0%" text="Departments" valign="center" />
+                    <control id="PlaceDept" y="10%" x="50%" name="textfield" width="50%" maxLength="200" />
+                 </panel>
+                 <panel height="*" childLayout="absolute" valign="center" backgroundColor="#55aa" padding="10">
+                    <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="10%" x="0%" text="(Commar sperated)" valign="center" />
+                 </panel>
+                 <panel height="*" childLayout="horizontal" valign="center" backgroundColor="#55aa" padding="10">
+                    <control id="buttonOk" name="button" label="Add Place">
+                        <interact onClick="addPlace()"/>
+                    </control>
+                    <panel width="*" />
+                    <control id="buttonOk" name="button" label="Write File">
+                        <interact onClick="writeFile()"/>
+                    </control>
+                    <panel width="*" />
+                    <control id="buttonCancel" name="button" label="Cancel"> <interact onClick="doNothing()"/>
+                    </control>
+                </panel>
+            </panel>
+            
+        </layer>
+        <layer id="layer"  childLayout="center">
+            <panel id="panel" height="15%" width="100%" align="center" valign="bottom" childLayout="center" visibleToMouse="true">
+                <image filename="Interface/pics/footer.png" width="100%" height="100%"  x="0%" y="0%"/>
+                
+            </panel>
+        </layer>
+        <layer id="back"  childLayout="center">
+            <panel id="panel2" height="15%" width="100%"  valign="bottom" childLayout="absolute" visibleToMouse="true">
+                <control id="Map" name="button" y="75%" x="10%" label="Show Map">
+                        <interact onClick="showMap()"/>
+                </control>
+                <control id="List" name="button" y="75%" x="20%" label="Show Places">
+                    <interact onClick="showList()"/>
+                </control>
+                <control id="Adminbtn" name="button" y="75%" x="30%" label="Add Place">
+                    <interact onClick="admin()"/>
+                </control>
+                <text id="text" font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="50%" x="75%" text="Swansea University" valign="center" />
+            </panel>
+        </layer>
+    </screen>
+    
+    
+    
 </nifty>

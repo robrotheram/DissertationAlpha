@@ -27,6 +27,11 @@ public class DataBase {
     public List<PlaceData> getList(){
         return placeDataList.subList(0, (placeDataList.size()-1));
     }
+    
+    public ArrayList<PlaceData> getArrayList(){
+        return placeDataList;
+    }
+    
     public List<PlaceData> Search(String txt){
         ArrayList<PlaceData> searchplaceData = new ArrayList<PlaceData>();
         for(PlaceData pl:placeDataList){

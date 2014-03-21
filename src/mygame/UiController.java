@@ -15,6 +15,7 @@ import de.lessvoid.nifty.NiftyEventSubscriber;
 import de.lessvoid.nifty.controls.TextFieldChangedEvent;
 import de.lessvoid.nifty.controls.ListBox;
 import de.lessvoid.nifty.controls.ListBoxSelectionChangedEvent;
+import de.lessvoid.nifty.controls.TextField;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.screen.Screen;
@@ -33,28 +34,33 @@ public class UiController implements ScreenController {
     private Nifty nifty;
     private int closeByPos;
     private int newLocationPos;
+    private Admin admin = new Admin();
     private DataBase placeData;
     final int ox = -43;
     final int oz = -14;
+    private String path;
     
-    public void SetUP(Render r, Navigation n) {
+    public void SetUP(Render r, Navigation n, boolean b, String p ) {
         rndr = r;
+        path = p;
         nav = n;
         placeData = n.getPlaceData();
-    // You can map one or several inputs to one named action
-    rndr.getInputManager().addMapping("Pause",  new KeyTrigger(KeyInput.KEY_P));
-    rndr.getInputManager().addMapping("Map",  new KeyTrigger(KeyInput.KEY_M));
-    // Add the names to the action listener.
-    rndr.getInputManager().addListener(actionListener,"Pause");
-    rndr.getInputManager().addListener(actionListener,"Map");
-    
         NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(rndr.getAssetManager(),
                                                           rndr.getInputManager(),
                                                           rndr.getAudioRenderer(),
                                                           rndr.getGuiViewPort());
         nifty = niftyDisplay.getNifty();
-        nifty.fromXml("Interface/newbutton.xml","begin", this);
-
+        if(b){
+            nifty.fromXml("Interface/newbutton.xml","run", this);
+            rndr.setCamLocation(new Vector3f(5,1,-1));
+            rndr.getFlyByCamera().setEnabled(true);
+            rndr.getFlyByCamera().setDragToRotate(true);
+            
+        }else{
+            nifty.fromXml("Interface/newbutton.xml","begin", this);
+                         rndr.getFlyByCamera().setEnabled(false);
+           rndr.getFlyByCamera().setDragToRotate(true);
+        }
 
          // attach the nifty display to the gui view port as a processor
         rndr.getGuiViewPort().addProcessor(niftyDisplay);
@@ -70,6 +76,16 @@ public class UiController implements ScreenController {
             pic.setPosition(-50,0);
                 
             rndr.getGuiNode().attachChild(pic);    
+
+           if(!b){
+            for(String str : nifty.getAllScreensName()){
+                 Element niftyElement = nifty.getScreen(str).findElementByName("Adminbtn");
+                 if(niftyElement !=null){
+                     nifty.removeElement(nifty.getScreen(str), niftyElement);
+                 }
+            }
+           }
+           rndr.setUpdate(true);
            
   }
     
@@ -77,10 +93,40 @@ public class UiController implements ScreenController {
         closeByPos = i;
     }
  public void doNothing(){
+     rndr.setUpdate(true);
       nifty.gotoScreen("run");
     
   }
  
+ public void admin(){
+        rndr.setUpdate(false);
+       rndr.getGuiNode().detachChildNamed("pin");
+       nifty.gotoScreen("admin");
+ }
+ public void addPlace(){
+     String name = getTextFeildString("PlaceTitle");
+     String des = getTextFeildString("PlaceDesc");
+     String dept = getTextFeildString("PlaceDept");
+     
+     System.out.println(name+des+dept);
+     admin.addPlace(name,des,dept, rndr.getCamera().getLocation());
+     doNothing();
+ }
+ public void writeFile(){
+     admin.write(path);
+     doNothing();
+ }
+ 
+ 
+ public String getTextFeildString(String id){
+    TextField txt = nifty.getCurrentScreen().findNiftyControl(id, TextField.class);
+// swap old with new text
+     String output = null;
+      if(txt !=null){
+           output = txt.getRealText();
+      }
+      return output;
+ }
  
  public void select(){
      rndr.getModels().resetLOD();
@@ -89,11 +135,10 @@ public class UiController implements ScreenController {
             if(pos.distance(nav.getPlaceData().get(i).getCo_ord())<=2){
                 
                 setClosebyPos(i);
-            } else{
             }
         }
      
-     
+      rndr.setUpdate(true);
      nifty.gotoScreen("run");
      rndr.getFlyByCamera().setEnabled(true);
      rndr.getFlyByCamera().setDragToRotate(false);
@@ -108,8 +153,24 @@ public class UiController implements ScreenController {
   private ActionListener actionListener = new ActionListener() {
     public void onAction(String name, boolean keyPressed, float tpf) {
       if (name.equals("Map") && !keyPressed) {
+            showMap();
+      }else if (name.equals("Pause") && !keyPressed) {
+            showList();
+      }
+    }
+  };
+  public void showList(){
+      
         
-        Vector3f pos = rndr.getCamera().getLocation();
+           rndr.getGuiNode().detachChildNamed("pin");
+           nifty.gotoScreen("start");
+           rndr.getFlyByCamera().setEnabled(false);
+           rndr.getFlyByCamera().setDragToRotate(true);
+         
+          
+  }
+  public void showMap(){
+      Vector3f pos = rndr.getCamera().getLocation();
         System.out.print("x:"+pos.x);
         System.out.print("y:"+pos.y);
         System.out.println("z:"+pos.z);
@@ -127,20 +188,7 @@ public class UiController implements ScreenController {
             pic.setPosition(x,z);
             rndr.getGuiNode().attachChild(pic);
             nifty.gotoScreen("test");
-          
-      }else if (name.equals("Pause") && !keyPressed) {
-          
-        
-           rndr.getGuiNode().detachChildNamed("pin");
-           nifty.gotoScreen("start");
-           rndr.getFlyByCamera().setEnabled(false);
-           rndr.getFlyByCamera().setDragToRotate(true);
-         
-          
-      }
-    }
-  };
-  
+  }
   public void setLabelText(String s){
       
       Element niftyElement = nifty.getCurrentScreen().findElementByName("text");
@@ -150,6 +198,7 @@ public class UiController implements ScreenController {
       }
   }
 
+    
     public void bind(Nifty nifty, Screen screen) {
         rndr.getGuiNode().detachChildNamed("pin");
         screen = nifty.getScreen("start");

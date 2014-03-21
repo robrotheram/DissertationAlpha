@@ -149,7 +149,7 @@ public class Models {
            setLOD("faraday",false);
            setLOD("liblaw",true);
            setLOD("lib",true);
-           setLOD("kehir",true);
+           setLOD("kehir",false);
            setLOD("tal",false);
            setLOD("fulton",false);
            
@@ -174,11 +174,11 @@ public class Models {
        }else if(build.equals("Talesin")){
             setLOD("technium",false);
            setLOD("faraday",false);
-           setLOD("liblaw",false);
+           setLOD("liblaw",true);
            setLOD("lib",false);
            setLOD("kehir",false);
            setLOD("tal",false);
-           setLOD("fulton",false);
+           setLOD("fulton",true);
            
        }else if(build.equals("Kehir Hardy")){
             setLOD("technium",true);

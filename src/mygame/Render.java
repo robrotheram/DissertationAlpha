@@ -5,6 +5,7 @@ import com.jme3.bounding.BoundingBox;
 import com.jme3.bounding.BoundingSphere;
 import com.jme3.bounding.BoundingVolume;
 import com.jme3.font.BitmapText;
+import com.jme3.input.FlyByCamera;
 import com.jme3.light.AmbientLight;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
@@ -35,13 +36,16 @@ public class Render extends SimpleApplication {
     private Models model;
     private FilterPostProcessor fpp;
     private FogFilter fog;
-    
+    private boolean update;
+    private boolean admin;
+    private String path;
     
   
-    public Render(){
-        
+    public Render(boolean b,String p){
+        admin  = b;
+        path = p;
         AppSettings settings = new AppSettings(true);
-        settings.setResolution(1920,1080);
+        settings.setResolution(1280,720);
         this.setShowSettings(false);
         this.setSettings(settings);
         this.start();
@@ -83,13 +87,15 @@ public class Render extends SimpleApplication {
         flyCam.setDragToRotate(true);
         guiNode.attachChild(wayPointsText);
         nav.SetUP(this);
-        ui.SetUP(this, nav);
+        ui.SetUP(this, nav, admin, path);
      
     }
-    
+    public void setUpdate(boolean b){
+        update = b;
+    }
     @Override
     public void simpleUpdate(float tpf){
-      model.updatelod();
+        if(update){model.updatelod();}
     }
     public Spatial getScene(){
         return scene;
@@ -110,6 +116,9 @@ public class Render extends SimpleApplication {
      public Models getModels(){
         return model;
     }
+     public FlyByCamera getFlyCam(){
+         return flyCam;
+     }
     
     
 }
