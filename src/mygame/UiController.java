@@ -12,6 +12,8 @@ import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.ui.Picture;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
+import de.lessvoid.nifty.controls.Button;
+import de.lessvoid.nifty.controls.Label;
 import de.lessvoid.nifty.controls.TextFieldChangedEvent;
 import de.lessvoid.nifty.controls.ListBox;
 import de.lessvoid.nifty.controls.ListBoxSelectionChangedEvent;
@@ -39,9 +41,11 @@ public class UiController implements ScreenController {
     final int ox = -43;
     final int oz = -14;
     private String path;
+    private Lang language;
     
-    public void SetUP(Render r, Navigation n, boolean b, String p ) {
+    public void SetUP(Render r, Navigation n, boolean b, String p, Lang l ) {
         rndr = r;
+        language  = l;
         path = p;
         nav = n;
         placeData = n.getPlaceData();
@@ -86,7 +90,7 @@ public class UiController implements ScreenController {
             }
            }
            rndr.setUpdate(true);
-           
+           setUPLang();
   }
     
     public void setClosebyPos(int i){
@@ -247,6 +251,81 @@ public class UiController implements ScreenController {
     if(selection.size()>0){
         newLocationPos = selection.get(0);
     }
+  }
+  
+  public void setUPLang(){
+      for(String str : nifty.getAllScreensName()){
+                 Button adminButton = nifty.getScreen(str).findNiftyControl("Adminbtn", Button.class);
+                 Button mapButton = nifty.getScreen(str).findNiftyControl("Map", Button.class);
+                 Button listButton = nifty.getScreen(str).findNiftyControl("List", Button.class);
+                 Button okButton = nifty.getScreen(str).findNiftyControl("buttonOk", Button.class);
+                 Button cancelButton = nifty.getScreen(str).findNiftyControl("buttonCancel", Button.class);
+                 Label desc = nifty.getScreen(str).findNiftyControl("desc", Label.class);
+                 Label desc2 = nifty.getScreen(str).findNiftyControl("desc2", Label.class);
+                 Label desc3 = nifty.getScreen(str).findNiftyControl("desc3", Label.class);
+                 
+                 try{
+                    if(adminButton !=null){
+                        //System.out.println("===========================>>>"+language);
+                       adminButton.setText(language.getAdminButtonText());
+                    }
+                 }catch(NullPointerException e){
+                     e.printStackTrace();
+                 }
+                 try{
+                    if(mapButton !=null){
+                       mapButton.setText(language.getMapButtonText());
+
+                    }
+                }catch(NullPointerException e){
+                     e.printStackTrace();
+                }
+                try{
+                    if(listButton !=null){
+                        listButton.setText(language.getListButtonText());
+                    }
+                    }catch(NullPointerException e){
+                     e.printStackTrace();
+                 }
+                try{
+                    if(okButton !=null){
+                        okButton.setText(language.getOkButtonText());
+                    }
+                    }catch(NullPointerException e){
+                     e.printStackTrace();
+                 }
+                try{
+                    if(cancelButton !=null){
+                        cancelButton.setText(language.getCancelButtonText());
+                    }
+                    }catch(NullPointerException e){
+                     e.printStackTrace();
+                 }
+                try{
+                    if(desc !=null){
+                        desc.setText(language.getDescriptionButtonText());
+                    }
+                    }catch(NullPointerException e){
+                     e.printStackTrace();
+                 }
+                try{
+                    if(desc2 !=null){
+                        desc2.setText(language.getDescriptionLine2ButtonText());
+                    }
+                    }catch(NullPointerException e){
+                     e.printStackTrace();
+                 }
+                try{
+                    if(desc3 !=null){
+                        desc3.setText(language.getDescriptionLine3ButtonText());
+                    }
+                 }catch(NullPointerException e){
+                     e.printStackTrace();
+                 }
+                 
+                 
+                 
+            }
   }
   
 

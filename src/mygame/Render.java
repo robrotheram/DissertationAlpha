@@ -39,13 +39,17 @@ public class Render extends SimpleApplication {
     private boolean update;
     private boolean admin;
     private String path;
+    private String langID;
+    private Languages l;
     
   
-    public Render(boolean b,String p){
+    public Render(boolean b,String p, String langID){
         admin  = b;
+        this.langID = langID;
         path = p;
         AppSettings settings = new AppSettings(true);
         settings.setResolution(1280,720);
+        settings.setTitle("Swansea Univeristy");
         this.setShowSettings(false);
         this.setSettings(settings);
         this.start();
@@ -56,9 +60,13 @@ public class Render extends SimpleApplication {
     @Override
     public void simpleInitApp() {
         
-        assetManager.registerLoader(XMLLoader.class, "rrf.xml");
+        assetManager.registerLoader(PlaceDataXMLLoader.class, "rrf.xml");
         // Type cast to your result class X here
         placeData = (DataBase) assetManager.loadAsset("Data/Data.rrf.xml");
+        assetManager.registerLoader(LangXMLLoader.class, "lang.xml");
+        // Type cast to your result class X here
+        l = (Languages) assetManager.loadAsset("Data/Languages.lang.xml");
+        settings.setTitle(l.getLang(langID).getTitle());
         nav = new Navigation(placeData);
         ui = new UiController();
         rootNode.attachChild(SkyFactory.createSky(assetManager, "Textures/Skysphere.jpg", true));
@@ -87,7 +95,8 @@ public class Render extends SimpleApplication {
         flyCam.setDragToRotate(true);
         guiNode.attachChild(wayPointsText);
         nav.SetUP(this);
-        ui.SetUP(this, nav, admin, path);
+        System.err.println("=================>"+l.getLang(langID).getAdminButtonText());
+        ui.SetUP(this, nav, admin, path,l.getLang(langID));
      
     }
     public void setUpdate(boolean b){

@@ -54,13 +54,12 @@
     
      <screen id="begin"controller="mygame.UiController">
         <layer childLayout="center">
-            <panel width="45%" height="25%" align="center" valign="center" childLayout="vertical" backgroundColor="#55a5" padding="10">
+            <panel width="45%" height="30%" align="center" valign="center" childLayout="vertical" backgroundColor="#55a5" padding="10">
                 <panel height="*" childLayout="absolute" valign="center" backgroundColor="#55aa" padding="10">
-                    <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="10%" x="0%" text="Hello Tam, Welcome to V.0.5.5 (alpha)" valign="center" />
-                    <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="30%" x="0%"  text=" --------| Controls |-------" valign="center" />
-                    <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="60%" x="0%" text="Press 'p' to bring up the list" valign="center" />
-                    <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="90%" x="0%" text="Press 'm' to bring up the map" valign="center" />
-                   </panel>
+                    <text id="desc"  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="10%" x="0%" text="Welcome to V.1 (alpha)" valign="center" />
+                    <text id="desc2" font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="30%" x="0%"  text=" --------| Controls |-------" valign="center" />
+                    <text id="desc3" font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="60%" x="0%" text="Drag to move around" valign="center" />
+                 </panel>
                    
             </panel>
         </layer>
@@ -138,11 +137,11 @@
                     <text  font="Interface/Fonts/HelveticaNeue.fnt" color="#fff" y="10%" x="0%" text="(Commar sperated)" valign="center" />
                  </panel>
                  <panel height="*" childLayout="horizontal" valign="center" backgroundColor="#55aa" padding="10">
-                    <control id="buttonOk" name="button" label="Add Place">
+                    <control id="AddPlaceBtn" name="button" label="Add Place">
                         <interact onClick="addPlace()"/>
                     </control>
                     <panel width="*" />
-                    <control id="buttonOk" name="button" label="Write File">
+                    <control id="writrButton" name="button" label="Write File">
                         <interact onClick="writeFile()"/>
                     </control>
                     <panel width="*" />

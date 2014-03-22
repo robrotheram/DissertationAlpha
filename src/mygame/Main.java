@@ -19,7 +19,7 @@ public class Main  {
         
     }
     public Main(boolean b , String path){
-           rndr = new Render(b , path);
+           rndr = new Render(b , path,"English");
            
         
     }
